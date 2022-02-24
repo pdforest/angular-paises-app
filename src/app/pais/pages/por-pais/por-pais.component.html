@@ -1,0 +1,37 @@
+<h2>Por Pais</h2>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <!-- 
+            tengo que escuchar el evento onEnter del componente pais-input
+            que emite el termino $event que va a recibir
+            la funcion buscar
+        -->
+        <app-pais-input 
+            (onEnter)="buscar( $event )"
+            (onDebounce)="sugerencias( $event )"
+            placeholder="Buscar pais..."
+            >
+        </app-pais-input>
+
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="hayError" class="alert alert-danger">
+    No se encontro nada con el termino: {{termino}}
+</div>
+
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <!-- 
+            tengo que emitir [paisesTabla] con el contenido de "paises"
+            para que el componente pais-tabla llene la tabla
+        -->
+        <app-pais-tabla [paisesTabla]="paises"></app-pais-tabla>
+        
+    </div>
+</div>
