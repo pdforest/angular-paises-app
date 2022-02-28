@@ -1,2 +1,34 @@
-<h2>Por Region</h2>
+<h2>Region <small>{{regionActiva | titlecase }}</small></h2>
+    
 <hr>
+
+<h5>Buscar por region:</h5>
+
+<!--[class.btn-primary]="region === regionActiva"-->
+<!--ngClass="{
+    'btn-outline' = regionActiva === region,
+    'btn-outline-primary' = regionActiva !== region,
+}"-->
+
+<div class="row">
+    <div class="col">
+        <button *ngFor="let region of regiones"
+                [class]="getClaseCSS(region)"
+                (click)="activarRegion(region)"
+        >{{region | titlecase}}</button>
+        
+    </div>
+</div>
+
+<hr>
+
+<div *ngIf="paises.length > 0" class="row">
+    <div class="col">
+        <!-- 
+            tengo que emitir [paisesTabla] con el contenido de "paises"
+            para que el componente pais-tabla llene la tabla
+        -->
+        <app-pais-tabla [paisesTabla]="paises"></app-pais-tabla>
+        
+    </div>
+</div>

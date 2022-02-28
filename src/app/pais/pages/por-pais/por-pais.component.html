@@ -18,6 +18,21 @@
     </div>
 </div>
 
+<!--sugerencias-->
+<ul *ngIf="mostrarSugerencias"
+    class="list-group">
+    <li *ngFor="let item of paisesSugeridos"
+         class="list-group-item list-group-item-action">
+        <a class="nav-link" 
+           [routerLink]="[ '/pais/', item.cca2 ]">{{item.name.common}}</a>
+    </li>
+    <li
+        class="list-group-item list-group-item-action">
+        <a class="nav-link" (click)="buscar( termino )">
+           Buscar "{{termino}}"</a>
+    </li>
+</ul>
+
 <hr>
 
 <div *ngIf="hayError" class="alert alert-danger">
