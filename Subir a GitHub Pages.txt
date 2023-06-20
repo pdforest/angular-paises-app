@@ -5,7 +5,7 @@ npm install copyfiles --save-dev
 2) Modificar package.json
 "build:href": "ng build --base-href ./",
 "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist",
-"delete:docs": "del docs",
+"delete:docs": "del-cli docs -f",
 "copy:dist": "copyfiles dist/paises-app/* ./docs -f"
 
 3) Configurar GitHub
