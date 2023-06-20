@@ -1,0 +1,16 @@
+1) Instalar los scripts
+npm install del-cli --save-dev
+npm install copyfiles --save-dev
+
+2) Modificar package.json
+"build:href": "ng build --base-href ./",
+"build:github": "npm run delete:docs && npm run build:href && npm run copy:dist",
+"delete:docs": "del docs",
+"copy:dist": "copyfiles dist/paises-app/* ./docs -f"
+
+3) Configurar GitHub
+GitHub -> Settings -> Pages
+Source -> Deploy from branch
+Branch -> Main /docs (Save)
+Actions -> Ver las tareas
+
