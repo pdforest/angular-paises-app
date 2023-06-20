@@ -12,6 +12,7 @@
             (onEnter)="buscar( $event )"
             (onDebounce)="sugerencias( $event )"
             placeholder="Buscar pais..."
+            [initialValue]="initialValue"
             >
         </app-pais-input>
 
@@ -35,10 +36,16 @@
 
 <hr>
 
-<div *ngIf="hayError" class="alert alert-danger">
+<!--div *ngIf="termino.length > 0 && (hayError || paisesSugeridos.length <= 0 ||paises.length <= 0)" class="alert alert-danger"-->
+    <div *ngIf="termino.length > 0 &&  !isLoading && paisesSugeridos.length <= 0 && (hayError || paises.length <= 0)" class="alert alert-danger">
     No se encontro nada con el termino: {{termino}}
 </div>
 
+<div class="row" *ngIf="isLoading">
+    <div class="col">
+        <pais-spinner></pais-spinner>
+    </div>
+</div>
 
 <div *ngIf="paises.length > 0" class="row">
     <div class="col">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Country } from '../../interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
@@ -12,13 +12,20 @@ import { PaisService } from '../../services/pais.service';
     }
   `]
 })
-export class PorRegionComponent {
+export class PorRegionComponent implements OnInit{
 
   regiones: string[] = ['africa', 'americas', 'asia', 'europe', 'oceania'];
   regionActiva: string = '';
   paises: Country[] = [];
+  initialValue: string = '';
 
   constructor(private paisService: PaisService) { }
+
+  ngOnInit(): void {
+    this.paises = this.paisService.cacheStore.porRegion.countries;
+    this.initialValue = this.paisService.cacheStore.porRegion.term;
+    this.regionActiva = this.initialValue;
+  }
 
   getClaseCSS(region: string): string{
     return (this.regionActiva == region) ? 'btn btn-primary' : 'btn btn-outline-primary';
